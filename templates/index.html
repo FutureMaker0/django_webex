@@ -9,9 +9,11 @@
 <body>
     <h1>Index page</h1>
 
-    <a href="{% url 'user:register' %}">회원가입</a>
-    <br>
-    <a href="{% url 'user:login' %}">로그인</a>
+    {% comment %} <a href="{% url 'user:register' %}">회원가입</a> {% endcomment %}
+    {% comment %} <a href="{% url 'user:login' %}">로그인</a> {% endcomment %}
+
+    <p>회원가입</p>
+    <p>로그인</p>
 
 
 </body>
