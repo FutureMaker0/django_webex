@@ -1,8 +1,14 @@
 # django_webex
 
 # blog app
-  -. post (create, update, delete)
-  -. comment (write, delete)
-  -. hashtag (write, delete)
+  # models (views)
+    -. Post (create O, update O, delete O)
+    -. Comment (write O, delete O)
+    -. Hashtag (write O, delete O)
   
 ===== updated at 0713 =====
+
+# user app
+  # models (views)
+    -. UseManager
+    -. User (Registration O, login X, logout X)
