@@ -12,3 +12,10 @@ class RegisterForm(UserCreationForm):
         fields = ['email']
         #7/3
         # fields = UserCreationForm.Meta.fields + ('email',)
+
+
+# class LoginForm(AuthenticationForm):
+
+#     class Meta:
+#         model = User
+#         fields = ['email', 'password']

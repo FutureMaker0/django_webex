@@ -30,3 +30,5 @@ class Registration(View):
         if form.is_valid():
             user = form.save()
             return redirect('blog:list')
+        
+

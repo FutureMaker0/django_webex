@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils import timezone
 
 # 베이스 유저 메니저에 있는 것들을 상속받아 활용할 수가 있다.
+# 슈퍼유저 만들기 위한 클래스
 class UseManager(BaseUserManager):
     
     def _create_user(self, email, password, is_staff, is_superuser, **extra_fields):
@@ -71,7 +72,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
     # 위의 변수 중 필수값 지정 가능. 일단 패스
 
-    objects = UseManager()
+    # objects = UseManager()
 
     # def __str__(self):
     #     return self.name
