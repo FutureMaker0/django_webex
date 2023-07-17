@@ -31,7 +31,7 @@ class UseManager(BaseUserManager):
             date_joined  = now,
             **extra_fields
         )
-        # 일반 유저인지 관리자 유저인지를 
+        # 일반 유저인지 관리자 유저인지를   
         # 메서드 실행시 입력받은 값으로 구분해서 유저를 생성합니다.
 
         user.set_password(password)
