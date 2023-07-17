@@ -64,3 +64,9 @@ class Login(View):
             'form': form
         }
         return render(request, 'user/user_login.html', context)
+    
+
+class Logout(View):
+    def get(self, request):
+        logout(request)
+        return redirect('/') # 초기 index page로 이동
