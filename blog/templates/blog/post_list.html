@@ -4,9 +4,9 @@
 
     <!-- <h1>블로그 게시판 화면</h1> -->
     {% if user.is_authenticated %}
-        <p>"{{ user.email }}"님 환영합니다, 블로그 게시판 첫 화면입니다.</p>
-        <a href="{% url 'blog:write' %}" class="btn">게시글 작성</a>
-        <a href="{% url 'main' %}" class="btn">홈으로</a>
+        <p id="post_list-welcome">[{{ user.email }}]님 환영합니다, 블로그 게시판 메인 화면입니다.</p>
+        <a id="post_list-write" href="{% url 'blog:write' %}" class="btn mt-1">글쓰기</a>
+        {% comment %} <a id="post_list-gohome" href="{% url 'main' %}" class="btn">홈으로</a> {% endcomment %}
     {% else %}
         <p>등록되지 않은 사용자입니다. 서비스 이용을 위해 로그인해주시기 바랍니다.</p>
         <a href="{% url 'user:register' %}">회원가입</a>
@@ -22,9 +22,9 @@
     <!-- 테이블 안에 티헤드, 티바디 --> 
     {% comment %} 일반 view 상속 시, {% if posts %} {% endcomment %}
     {% if post_list %}
-        <table class="table">
+        <table class="table mt-3">
             <thead>
-                <tr>
+                <tr class="centered1 font1">
                     <th>제목</th>
                     <th>내용</th>
                     <th>글쓴이</th>
@@ -34,17 +34,19 @@
             <tbody>
                 {% comment %} 일반 view 상속 시, {% for post in posts %} {% endcomment %}
                 {% for post in post_list %}
-                    <tr>
+                    <tr class="centered2">
                         <!-- 'blog:detail blog: app_name, detail: urls.py에서의 name --> 
-                        <td><a href="{% url 'blog:detail' pk=post.pk %}" class="btn">
-                            {{ post.title }}
-                            <!-- comment 갯수 타이틀 옆에 표기 -->
-                            {% if post.comment_set.count > 0 %}
-                            <span class="text-danger small ml-2">
-                                {{ post.comment_set.count }}
-                            </span>
-                            {% endif %}
-                        </a></td>
+                        <td>
+                            <a href="{% url 'blog:detail' pk=post.pk %}" class="btn">
+                                {{ post.title }}
+                                <!-- comment 갯수 타이틀 옆에 표기 -->
+                                {% if post.comment_set.count > 0 %}
+                                <span class="text-danger small ml-2">
+                                    {{ post.comment_set.count }}
+                                </span>
+                                {% endif %}
+                            </a>
+                        </td>
                         <td>{{ post.content }}</td>
                         <td>{{ post.writer }}</td>
                         <td>{{ post.created_at }}</td>

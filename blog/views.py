@@ -1,4 +1,5 @@
 from typing import Any, Dict
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 # from django.http import HttpResponse
 from django.views import View 
@@ -8,6 +9,7 @@ from .models import Post, Comment, HashTag # 같은 경로의 models에서 Post 
 from .forms import PostForm, CommentForm, HashTagForm
 from django.urls import reverse_lazy, reverse
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 # Create your views here.
 # 블로그 안에 있는 views.py를 열었다.
@@ -239,3 +241,20 @@ class HashTagDelete(View):
         hashtag.delete()
 
         return redirect('blog:detail', pk=post_id)
+    
+
+class PostSearch(Index):
+    paginate_by = None
+
+    def get_queryset(self):
+        q = self.kwargs['q']
+        post_list = Post.objects.filter(
+            Q(title__contains=q)
+        ).distinct()
+        return post_list
+    
+    def get_context_data(self, **kwargs):
+        context = super(PostSearch, self).get_context_data()
+        q = self.kwargs['q']
+        context['search_info'] = f'검색결과: {q} ({self.get_queryset().count()})'
+        return context

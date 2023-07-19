@@ -1,0 +1,7 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h1>Blog
+        {% if search_info %}<small class="text-muted">{{ search_info }}</small>{% endif %}
+    </h1>
+{% endblock %}

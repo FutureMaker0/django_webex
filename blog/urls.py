@@ -31,6 +31,9 @@ urlpatterns = [
     # 해시태그 삭제
     path("detail/<int:pk>/hashtag/delete", views.HashTagDelete.as_view(), name='ht-delete'),
 
+    # 글 검색
+    path("search/<str:q>/", views.PostSearch.as_view(), name='search'),
+
 ]
 
 # 여기에 정의하는 애들은 서버주소/blog에 정의가 되는 애들이다.

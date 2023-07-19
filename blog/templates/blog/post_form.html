@@ -1,12 +1,14 @@
-{% block content %}
-    <h1>블로그 글 작성 화면</h1>
+{% extends 'blog/base.html' %}
 
-    <form action="{% url 'blog:write' %}" method="post"> <!-- action에 주소 -->
+{% block content %}
+    <h1 id="post_form-write">블로그 글 작성 화면</h1>
+
+    <form action="{% url 'blog:write' %}" method="post" class="mt-4"> <!-- action에 주소 -->
         {% csrf_token %}  <!-- form 요청을 허락하겠다는 명시 -->
         {{ form.as_p }}
         
         <!-- 서버에 값을 넘겨주기 위해 인풋을 사용 -->
-        <input type="submit" class="btn btn-outline-success">
+        <input type="submit" value="등록" class="btn btn-outline-success">
     </form>
 
 {% endblock %}
