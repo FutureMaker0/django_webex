@@ -23,7 +23,6 @@ class Registration(View):
             'title': 'User'
         }
         return render(request, 'user/user_register.html', context)
-        # return render(request, 'blog/post_list.html', context)
 
     def post(self, request):
         form = RegisterForm(request.POST)

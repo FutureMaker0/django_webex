@@ -72,7 +72,8 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
     # 위의 변수 중 필수값 지정 가능. 일단 패스
 
-    # objects = UseManager()
+    # superuser 생성 시 아래 객체 활용.
+    objects = UseManager()
 
     # def __str__(self):
     #     return self.name
