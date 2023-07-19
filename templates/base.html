@@ -8,10 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     {% comment %} <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css.map" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> {% endcomment %}
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet" media="screen"/>
-    {% comment %} <link href="static/css/styles.css" rel="stylesheet" media="screen"/> {% endcomment %}
-
-
+    
+    <link href="{% static 'css/styles2.css' %}" rel="stylesheet" media="screen"/>
+    
     <title>
         {% comment %} {% block title %}
             {{ title }}
@@ -21,10 +20,10 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav id="navibar" class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         
-            <a class="navbar-brand" href="/">Django</a>
+            <a class="navbar-brand" href="/">Home</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -51,13 +50,107 @@
     </div>
 </nav>
 
-    <div class="container">
-
-        <h1>블로그</h1>
-        <br>
-        {% block content %}
-        {% endblock %}
+<section>
+    <div class="container mt-5">
+        <div class="row justify-content-between">
+            <h1 class="mt-5" id="main-explain">당신을 위한 휴식공간</h1>
+            <p class="mt-2" id="main-explain2">일상에 지친 당신, 그리고 우리 모두에게 휴식과 안정이 될만한 좋은 글을 공유하는 공간입니다. 함께 공유해요!</p>
+            <br>
+            {% comment %} {% block content %}
+            {% endblock %} {% endcomment %}
+        </div>
     </div>
+
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="">
+                <h2 class="text-light mt-4">Blog - 최신 포스팅</h2>
+                
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <h6><a href="/blog/6/" class="text-decoration-none text-dark">최신 게시글1 타이틀(댓글갯수)</a></h6>
+                            <span class="badge badge-pill badge-light float-right text-dark">
+                                게시글 작성자
+                                &nbsp;
+                                &nbsp;
+                                내용
+                                &nbsp;
+                                &nbsp;
+                                작성일
+                            </span>
+                        </div>
+                    </div>
+                
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <h6><a href="/blog/5/" class="text-decoration-none text-dark">인프런에 동영상 강좌가 등록되었습니다.</a></h6>
+                            <span class="badge badge-pill badge-light float-right">
+                                <img class="mr-1 rounded-circle" width="20px" src="https://lh3.googleusercontent.com/a/AAcHTtd-dXmhDXkgs6U5HPIZ2LkxBtVHM-IZ-xbU6IYLE1bFVbE=s96-c" alt="sungyong">
+                                sungyong
+                                &nbsp;
+                                &nbsp;
+                                June 23, 2021, 11:16 a.m.
+                            </span>
+                        </div>
+                    </div>
+                
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <h6><a href="/blog/4/" class="text-decoration-none text-dark">cryptography 오류시 대처법</a></h6>
+                            <span class="badge badge-pill badge-light float-right">
+                                <img class="mr-1 rounded-circle" width="20px" src="https://lh3.googleusercontent.com/a-/AOh14Gj4bqungfeMpjW_3BpKCYrSGsG01jcDYKUzCnjA=s96-c" alt="taegon">
+                                taegon
+                                &nbsp;
+                                &nbsp;
+                                May 10, 2021, 4:50 p.m.
+                            </span>
+                        </div>
+                    </div>
+                
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <h6><a href="/blog/6/" class="text-decoration-none text-dark">StartBootstrap 버전 문제</a></h6>
+                            <span class="badge badge-pill badge-light float-right">
+                                <img class="mr-1 rounded-circle" width="20px" src="https://lh3.googleusercontent.com/a/AAcHTtd-dXmhDXkgs6U5HPIZ2LkxBtVHM-IZ-xbU6IYLE1bFVbE=s96-c" alt="sungyong">
+                                sungyong
+                                &nbsp;
+                                &nbsp;
+                                June 30, 2021, 1:12 a.m.
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <h6><a href="/blog/6/" class="text-decoration-none text-dark">StartBootstrap 버전 문제</a></h6>
+                            <span class="badge badge-pill badge-light float-right">
+                                <img class="mr-1 rounded-circle" width="20px" src="https://lh3.googleusercontent.com/a/AAcHTtd-dXmhDXkgs6U5HPIZ2LkxBtVHM-IZ-xbU6IYLE1bFVbE=s96-c" alt="sungyong">
+                                sungyong
+                                &nbsp;
+                                &nbsp;
+                                June 30, 2021, 1:12 a.m.
+                            </span>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="fixed-bottom">
+    <!-- Footer -->
+<footer class="py-4 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white" id="footer-word">
+            Copyright &copy; 좋은 글과 함께 마음의 휴식을.
+        </p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+</div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
