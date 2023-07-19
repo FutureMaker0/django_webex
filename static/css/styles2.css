@@ -1,0 +1,111 @@
+body {
+    background: url('/static/img/bg-sky.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+section {
+    margin-bottom: 150px;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+h1[id='main-explain'] {
+    font-size: 50px;
+    color: white
+}
+
+p[id='main-explain2'] {
+    font-size: 30px;
+    color: white;
+}
+
+p[id='footer-word'] {
+    font-size: 20px;
+}
+
+h1[id='post_list-h1'] {
+    color: white;
+}
+
+h2[id="post_detail-title"]{
+    color: white;
+}
+
+p[id="post_list-welcome"]{
+    font-size: 25px;
+    color: white;
+}
+
+a[id="post_list-write"]{
+    color: black;
+    text-align: right;
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a[id="post_list-gohome"]{
+    color: white;
+}
+
+h2[id="post_list-search"]{
+    color: darkblue;
+}
+
+h2[id="post_list-category"]{
+    color: darkblue;
+}
+
+a[id="category-elem1"]{
+    text-align: center;
+}
+
+a[id="category-elem2"]{
+    text-align: center;
+}
+
+a[id="category-elem3"]{
+    text-align: center;
+}
+
+a[id="category-elem4"]{
+    text-align: center;
+}
+
+nav[id="navibar"]{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.btn{
+    border-radius: 5px;
+}
+
+h1[id="post_form-write"]{
+    color: white;
+}
+
+tr.centered1 th{
+    text-align: center;
+}
+
+tr.font1 th{
+    font-size: 22px;
+    color: darkblue;
+    font-weight: bolder;
+}
+
+tr.centered2 td{
+    text-align: center;
+    font-size: 17px;
+}
