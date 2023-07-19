@@ -1,4 +1,5 @@
-# django_webex
+# django_webex (django 기반 기술 블로그 개발)
+  - 주제: 명언 게시판
 
 # 개발 요구사항
   1. 메인페이지 구현
