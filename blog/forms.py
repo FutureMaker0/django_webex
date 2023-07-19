@@ -19,9 +19,9 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content']
-        widget = {
-            'content': forms.Textarea(attrs={'rows': '3', 'cols':'35'})
-        }
+        # widget = {
+        #     'content': forms.Textarea(attrs={'rows': '3', 'cols':'10'})
+        # }
 
 
 class HashTagForm(forms.ModelForm):

@@ -1,43 +1,53 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+
     <!-- <h1>블로그 게시판 화면</h1> -->
-    <p>블로그 게시판 첫 화면입니다.</p>
-
-    <a href="{% url 'blog:write' %}" class="btn">글 작성</a>
-
-    <!-- {{ posts }} -->
-    <!-- views에서 context로 보내줬던 posts를 확인하는 문법 -->
-    <!-- 5개의 객체가 리스트 형태로 반환되어 있다. for문 사용가능 --> 
-    <!-- 
-    <ul>
-        {% for post in posts %}
-            <li>{{ post.title }}</li>
-            <li>{{ post.content }}</li>
-            <li>{{ ' ' }}</li>
-        {% endfor %}
-    </ul>
-    -->
+    {% if user.is_authenticated %}
+        <p>"{{ user.email }}"님 환영합니다, 블로그 게시판 첫 화면입니다.</p>
+        <a href="{% url 'blog:write' %}" class="btn">게시글 작성</a>
+        <a href="{% url 'main' %}" class="btn">홈으로</a>
+    {% else %}
+        <p>등록되지 않은 사용자입니다. 서비스 이용을 위해 로그인해주시기 바랍니다.</p>
+        <a href="{% url 'user:register' %}">회원가입</a>
+        <br>
+        <a href="{% url 'user:login' %}">로그인</a>
+        <br>
+        <a href="{% url 'main' %}">홈으로</a>
+        <br>
+        <a href="{% url 'blog:write' %}">게시글 작성(LoginMixin 확인용)</a>
+    {% endif %}
 
     <!-- 글이 있을 때 테이블, 없을 때 특정문구 출력 -->
     <!-- 테이블 안에 티헤드, 티바디 --> 
-    {% if posts %}
+    {% comment %} 일반 view 상속 시, {% if posts %} {% endcomment %}
+    {% if post_list %}
         <table class="table">
             <thead>
                 <tr>
                     <th>제목</th>
                     <th>내용</th>
                     <th>글쓴이</th>
-
+                    <th>작성날짜</th>
                 </tr>
             </thead>
             <tbody>
-                {% for post in posts %}
+                {% comment %} 일반 view 상속 시, {% for post in posts %} {% endcomment %}
+                {% for post in post_list %}
                     <tr>
                         <!-- 'blog:detail blog: app_name, detail: urls.py에서의 name --> 
-                        <td><a href="{% url 'blog:detail' pk=post.pk %}" class="btn">{{ post.title }}</a></td>
+                        <td><a href="{% url 'blog:detail' pk=post.pk %}" class="btn">
+                            {{ post.title }}
+                            <!-- comment 갯수 타이틀 옆에 표기 -->
+                            {% if post.comment_set.count > 0 %}
+                            <span class="text-danger small ml-2">
+                                {{ post.comment_set.count }}
+                            </span>
+                            {% endif %}
+                        </a></td>
                         <td>{{ post.content }}</td>
                         <td>{{ post.writer }}</td>
+                        <td>{{ post.created_at }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -46,13 +56,32 @@
         <p>작성된 게시물이 없습니다.</p>
     {% endif %}
 
-    <!-- 글이 있을 때 -->
-    <!-- 테이블 -->
+    {% if is_paginated %}
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center mb-4">
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">&larr; 이전글</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">&larr; 이전글</a>
+                </li>
+            {% endif %}
 
-    <!-- 글이 없을 때 -->
-    <!-- 글이 없습니다. -->
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_previous_number }}">최신글 &rarr;</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">최신글 &rarr;</a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
 
 {% endblock %}
 
 
-{# 한줄 주석 #}
+

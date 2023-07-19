@@ -2,10 +2,12 @@ from typing import Any, Dict
 from django.shortcuts import render, redirect
 # from django.http import HttpResponse
 from django.views import View 
+from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post, Comment, HashTag # 같은 경로의 models에서 Post 가져옴.
 from .forms import PostForm, CommentForm, HashTagForm
 from django.urls import reverse_lazy, reverse
+from django.core.paginator import Paginator
 
 # Create your views here.
 # 블로그 안에 있는 views.py를 열었다.
@@ -22,24 +24,31 @@ fbv 함수 기반 뷰 - 얘가 우선 이해가 되어야 클래스 기반이 �
 cbv 클래스 기반 뷰
 '''
 
-
+### post list - 일반 뷰
 # 클래스로 동일하게 다시한 번 만들어보자.
-class Index(View):
-    def get(self, request):
-        # return HttpResponse('index page GET class')
+# class Index(View):
+#     def get(self, request):
+#         # return HttpResponse('index page GET class')
         
-        # 디비에 접근해서 값을 가져와아 한다.
-        # 게시판에 글을 보여줘야되기 때문에 디비에서 값 조회
+#         # 디비에 접근해서 값을 가져와아 한다.
+#         # 게시판에 글을 보여줘야되기 때문에 디비에서 값 조회
     
-        post_objs = Post.objects.all()
-        context = {
-            "posts": post_objs
-            # "posts": None
-        }
+#         post_objs = Post.objects.all().order_by('-pk')
+#         context = {
+#             "posts": post_objs
+#             # "posts": None
+#         }
 
-        # 렌더의 정석적 인자값 3개
-        return render(request, 'blog/post_list.html', context)
+#         # 렌더의 정석적 인자값 3개
+#         return render(request, 'blog/post_list.html', context)
 
+### post list - 제네릭 뷰
+# 일반 뷰 쪽으로 포스팅이 들어간다?
+class Index(ListView):
+    model = Post
+    ordering = '-pk'
+    # ordering = ['created_at']
+    paginate_by = 10
 
 
 # django 자체에 클래스 뷰 기능이 강력하고 편리하다.
@@ -51,8 +60,8 @@ class Index(View):
 
 
 # 어떤 함수를 만들 때, get, post 중 뭐가 필요한지를 제일 먼저 고민해야 한다.
-# class Write(LoginRequiredMixin,View): # 이미 로그인된 유저만 받아주겠다.
-class Write(View): # 이미 로그인된 유저만 받아주겠다.
+class Write(LoginRequiredMixin,View): # 이미 로그인된 유저만 받아주겠다.
+# class Write(View): # 이미 로그인된 유저만 받아주겠다.
     def get(self, request):
         form = PostForm()
         context = {
@@ -109,7 +118,8 @@ class Delete(View):
         post = Post.objects.get(pk = pk)
         post.delete()
         return redirect('blog:list')
-
+        
+            
     # 클래스 자체에 아예 접근하지 못하게 mixin 필요
     # 로그인이 되었을 때만 삭제 버튼이 보이게.
 
@@ -151,7 +161,7 @@ class DetailView(View):
         return render(request, 'blog/post_detail.html', context)
 
 
-class commentWrite(View): # 일반 뷰를 상속
+class commentWrite(LoginRequiredMixin, View): # 일반 뷰를 상속
     # 어차피 디테일 페이지에 달릴 것이므로 특정 페이지를 요청하는 get은 불필요
     # def get(self, request):
     #     pass
@@ -198,7 +208,7 @@ class CommentDelete(View):
         return redirect('blog:detail', pk=post_id)
     
 
-class HashTagWrite(View):
+class HashTagWrite(LoginRequiredMixin, View):
     def post(self, request, pk):
         form = HashTagForm(request.POST)
 
