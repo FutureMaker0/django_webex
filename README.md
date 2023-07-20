@@ -56,8 +56,7 @@
 |13|**(선택) AWS Lightsail로 배포합니다.**||
 ||해당 과제는 개인에게 비용이 청구될 수 있습니다. 따라서 선택사항이지만 꼭 배포하여 운영까지 해보시는 것을 권해드립니다.|X|
 
-
-
+<img width="945" alt="기술블로그 모델링" src="https://github.com/FutureMaker0/django_webex/assets/120623320/4930696a-62bb-4fc2-8d8c-ac453735144a">
 
 
 #
