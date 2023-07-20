@@ -3,14 +3,14 @@
 
 
 # 모델링 및 개발을 위한 간단한 내용정리
-## blog app
+- blog app
   ### models (views)
     - Post (create, update, delete)
     - Comment (write, delete)
     - Hashtag (write, delete)
     --> 댓글과 해시태그는 포스트에 1:N 관계로 종속 (Foreign key)
 
-## user app
+- user app
   ### models (views)
     - UseManager
     - User 
