@@ -1,94 +1,103 @@
 {% extends 'blog/base.html' %}
+{% load static %}
 
 {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <h2 id="post_detail-title">제목: {{ post.title }}</h2>
+            <br>
 
-    <h2 id="post_detail-title">제목: {{ post.title }}</h2>
-    <br>
-
-    <!-- urls.py에서 글 수정하는 path의 name --> 
-    {% if user.is_authenticated and post.writer|lower == request.user|lower %}
-        <a href="{% url 'blog:list' %}" class="btn">목록으로</a><br>
-        <a href="{% url 'blog:edit' pk=post.pk %}" class="btn">게시글 수정</a>
-        <form action="{% url 'blog:delete' pk=post.pk %}" method="post"> <!-- 메소드는 거의 http에서 get아니면 post다. -->
-            {% csrf_token %}
-            <input type="submit" value="게시글 삭제" class="btn"> <!-- 해놓고 urls.py 수정 필요-->
-        </form>
-        <hr>
-    {% else %}
-        <!-- {{ post.writer }} / {{ request.user }}<br> -->
-        <a href="{% url 'blog:list' %}" class="btn">목록으로</a><br>
-        <form action="{% url 'blog:delete' pk=post.pk %}" method="post"> <!-- 메소드는 거의 http에서 get아니면 post다. -->
-            {% csrf_token %}
-            <input type="submit" value="게시글 삭제(계정 미 일치 시 확인용)" class="btn"> <!-- 해놓고 urls.py 수정 필요-->
-        </form>
-    {% endif %}
-
-    <!-- post_list에서 post에 대한 검증을 if 문으로 하고 오기 떄문에 추가 검증은 불필요 -->
-    <p>내용: {{ post.content }}</p>
-    <p>작성자: {{ post.writer }}</p>
-    <p>작성일: {{ post.created_at }}</p>
-    <p>수정일: {{ post.updated_at }}</p>
-
-    <hr>
-
-    <!-- 댓글 작성을 위한 기본 폼은 계속 있어야 한다. --> 
-    <h3>댓글</h3>
-    <form action="{% url 'blog:cm-write' pk=post.pk %}" method="post">
-        {% csrf_token %}
-        {{ comment_form.content }}
-        <input type="submit" value="댓글 작성">
-    </form>
-
-    <hr>
-
-    <!-- if 조건문으로 한번 거르고 값이 있으면, -->
-    {% if comments %}
-    <!-- 댓글 for 문 -->
-        <ul>
-            {% for comment in comments %}
-                <!-- 댓 내용, 작성시간, 삭제버튼 -->
-                <li> 
-                    {{ comment.content }} / {{ comment.created_at }} 
-                    <form action="{% url 'blog:cm-delete' pk=comment.pk %}" method="post">
-                        {% csrf_token %}
-                        <input type="submit" value="X" class="btn">
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
-
-    {% else %}
-        <p>댓글이 없습니다.</p>
-    {% endif %}
-
-    <hr>
-
-    <!-- 태그 작성 화면 -->
-    <h3>해시태그</h3>
-    <form action="{% url 'blog:ht-write' pk=post.pk %}" method="post">
-        {% csrf_token %}
-        {{ hashtag_form.name }}
-        <input type="submit" value="해시태그 작성">
-    </form>
-
-    <!-- hashtags -->
-    <!-- if 조건문으로 한번 거르고 값이 있으면, -->
-    {% if hashtags %}
-    <!-- 댓글 for 문 -->
-    <ul>
-        {% for hashtag in hashtags %}
-            <li> 
-                {{ hashtag }}
-                <form action="{% url 'blog:ht-delete' pk=hashtag.pk %}" method="post">
+            <!-- urls.py에서 글 수정하는 path의 name --> 
+            {% if user.is_authenticated and post.writer|lower == request.user|lower %}
+                <a href="{% url 'blog:list' %}" class="btn">목록으로</a><br>
+                <a href="{% url 'blog:edit' pk=post.pk %}" class="btn">게시글 수정</a>
+                <form action="{% url 'blog:delete' pk=post.pk %}" method="post" class="btn"> <!-- 메소드는 거의 http에서 get아니면 post다. -->
                     {% csrf_token %}
-                    <input type="submit" value="X" class="btn">
+                    <input type="submit" value="게시글 삭제" class="btn"> <!-- 해놓고 urls.py 수정 필요-->
                 </form>
-            </li>
-        {% endfor %}
-    </ul>
+                <hr>
+            {% else %}
+                <!-- {{ post.writer }} / {{ request.user }}<br> -->
+                <a href="{% url 'blog:list' %}" class="btn">목록으로</a><br>
+            {% endif %}
 
-    {% else %}
-        <p> 해시태그가 없습니다. </p>
-    {% endif %}
+            <!-- post_list에서 post에 대한 검증을 if 문으로 하고 오기 떄문에 추가 검증은 불필요 -->
+            <p class="mt-4">내용: </p>
+            <p>{{ post.content }}</p>
+            <p>작성자: {{ post.writer }}</p>
+            <p>작성일: {{ post.created_at }}</p>
+            <p>수정일: {{ post.updated_at }}</p>
 
+            <hr>
+
+            <!-- 댓글 작성을 위한 기본 폼은 계속 있어야 한다. --> 
+            <h3>댓글</h3>
+            <form action="{% url 'blog:cm-write' pk=post.pk %}" method="post">
+                {% csrf_token %}
+                {{ comment_form.content }}
+                <input type="submit" value="댓글 작성">
+            </form>
+
+            <hr>
+
+            <!-- if 조건문으로 한번 거르고 값이 있으면, -->
+            {% if comments %}
+            <!-- 댓글 for 문 -->
+                <ul>
+                    {% for comment in comments %}
+                        <!-- 댓 내용, 작성시간, 삭제버튼 -->
+                        <li> 
+                            <div class="d-inline">
+                            {{ comment.content }} / {{ comment.created_at }} 
+                            <form action="{% url 'blog:cm-delete' pk=comment.pk %}" method="post" class="d-inline">
+                                {% csrf_token %}
+                                <input type="submit" value="X" class="btn">
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+            {% else %}
+                <p>댓글이 없습니다.</p>
+            {% endif %}
+
+            <hr>
+
+            <!-- 태그 작성 화면 -->
+            <h3>해시태그</h3>
+            <form action="{% url 'blog:ht-write' pk=post.pk %}" method="post">
+                {% csrf_token %}
+                {{ hashtag_form.name }}
+                <input type="submit" value="해시태그 작성">
+            </form>
+
+            <!-- hashtags -->
+            <!-- if 조건문으로 한번 거르고 값이 있으면, -->
+            {% if hashtags %}
+            <!-- 댓글 for 문 -->
+            <ul>
+                {% for hashtag in hashtags %}
+                    <li>
+                        <div class="d-inline">
+                        {{ hashtag }}
+                        <form action="{% url 'blog:ht-delete' pk=hashtag.pk %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <input type="submit" value="X" class="btn">
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            {% else %}
+                <p> 해시태그가 없습니다. </p>
+            {% endif %}
+
+        </div>    
+
+        <div class="col-3">
+            <img src="{% static '/img/test-image.jpg' %}" alt="" class="img-fluid">
+        </div>
+    </div>
+</div>
 {% endblock %}
