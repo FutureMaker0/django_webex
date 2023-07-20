@@ -62,22 +62,22 @@
 #
 # blog app
   # models (views)
-    - Post (create O, update O, delete O)
-    - Comment (write O, delete O)
-    - Hashtag (write O, delete O)
+    - Post (create, update, delete)
+    - Comment (write, delete)
+    - Hashtag (write, delete)
     --> 댓글과 해시태그는 포스트에 1:N 관계로 종속 (Foreign key)
 
 # user app
   # models (views)
     - UseManager
     - User 
-      - Registration O
+      - Registration
           - user
           - superuser
       - login 
       - logout 
 
-# 본인 인증 및 이후 절차에 관한 유의사항
+# 유저 인증 및 이후 절차에 관한 유의사항
   # 로그인이 되지 않았을 때,
     - blog/list 페이지 진입 시, 미로그인 상태임 인지용 문구 노출, 게시글 작성 버튼 클릭 시 로그인 페이지로 전환
     - 전체 리스트 및 특정 포스트 내용을 확인할 수는 있으나, 포스트/댓글/해시태그에 대한 수정 및 삭제 등 조작 불가
