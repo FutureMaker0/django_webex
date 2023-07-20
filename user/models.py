@@ -65,6 +65,7 @@ class User(AbstractUser):
     is_active = models.BooleanField(default=True)
     last_login = models.DateTimeField(null=True, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
+    nickname = models.CharField(max_length=30, null=True, blank=True)
 
 
     USERNAME_FIELD = 'email'

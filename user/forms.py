@@ -9,7 +9,7 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['email']
+        fields = ['email', 'nickname']
         #7/3
         # fields = UserCreationForm.Meta.fields + ('email',)
 
