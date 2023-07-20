@@ -66,8 +66,6 @@
     - Comment (write O, delete O)
     - Hashtag (write O, delete O)
     --> 댓글과 해시태그는 포스트에 1:N 관계로 종속 (Foreign key)
-  
-===== updated at 0713 =====
 
 # user app
   # models (views)
@@ -78,8 +76,6 @@
           - superuser
       - login 
       - logout 
-
-===== updated at 0714 =====
 
 # 본인 인증 및 이후 절차에 관한 유의사항
   # 로그인이 되지 않았을 때,
@@ -92,4 +88,3 @@
     - 본인이 작성한 댓글, 해시태그에 대해서만 삭제 가능 -> 타 계정 등록 컨텐츠에 대해서는 권한 없음으로 삭제 불가
       (단, 본인이 작성한 포스트일 필요는 없음. 타 계정 작성글이라도 본인이 작성한 댓글/해시태그라면 삭제 가능)
 
-===== updated at 0717 =====
