@@ -15,7 +15,9 @@
 |3|로그인 기능 구현||
 ||로그인을 할 수 있는 페이지가 있어야합니다.|O|
 ||입력받는 값은 id, password입니다.|O|
-||<img width="1440" alt="스크린샷 2023-07-20 오후 7 05 16" src="https://github.com/FutureMaker0/django_webex/assets/120623320/249cbeb5-2f83-4ef5-abee-0e3ecb883dc6">||
+||
+<img width="1440" alt="스크린샷 2023-07-20 오후 7 05 16" src="https://github.com/FutureMaker0/django_webex/assets/120623320/9c57745d-c859-4c5c-a116-3f989b5abaf0">
+||
 |4|**게시글 작성 기능 구현**||
 ||로그인을 한 유저만 해당 기능을 사용 할 수 있습니다.|O|
 ||게시글 제목과 내용을 작성 할 수 있는 페이지가 있어야합니다.|O|
