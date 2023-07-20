@@ -109,3 +109,18 @@ tr.centered2 td{
     text-align: center;
     font-size: 17px;
 }
+
+p[id="not-auth"]{
+    color: white;
+    font-size: 22px;
+}
+
+p[id="no-list"]{
+    color: white;
+    font-size: 22px;
+    margin-top: 15px;
+}
+
+th[id="table-content"]{
+    max-width: 200px;
+}
