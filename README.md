@@ -1,4 +1,4 @@
-# django_webex (django 기반 기술 블로그 개발)
+- django_webex (django 기반 기술 블로그 개발)
   - 주제: 명언 공유 쉼터 커뮤니티
 
 
