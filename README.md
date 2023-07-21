@@ -6,8 +6,8 @@
 - blog
   ### models (views)
     - Post (C, R, U, D)
-    - Comment (C, D)
-    - Hashtag (C, D)
+    - Comment (C, R, D)
+    - Hashtag (C, R, D)
     --> 댓글과 해시태그는 포스트에 1:N 관계로 종속 (Foreign key)
 
 - user
