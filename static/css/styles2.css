@@ -34,6 +34,7 @@ h1[id='post_list-h1'] {
 
 h2[id="post_detail-title"]{
     color: white;
+    font-size: 45px;
 }
 
 p[id="post_list-welcome"]{
@@ -132,11 +133,12 @@ label[for="id_title"] {
 }
 
 input#id_title {
-    width: 100%;
+    width: 80%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 10px;
+    display: block;
 }
 
 /* "내용" 필드 스타일링 */
@@ -147,16 +149,18 @@ label[for="id_content"] {
 }
 
 textarea#id_content {
-    width: 100%;
+    width: 80%;
     height: 200px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical; /* 텍스트 영역의 크기를 수직 방향으로 조절 가능하도록 합니다. */
     margin-bottom: 10px;
+    display: block;
 }
 
 input[type="submit"]{
+    margin-top: 5px;
     border-radius: 4px;
     background-color: white;
     color: darkblue;
@@ -212,4 +216,29 @@ h3[id="login-h3"]{
     justify-content: center;
     align-items: center;
     height: 70vh;  /*화면 전체 높이를 차지합니다. */
+}
+
+label[for="post-content"]{
+    font-size: 28px;
+}
+
+h3[id="post_detail-writer"]{
+    color: white;
+    font-size: 25px;
+}
+
+h5[id="post_detail-created_at"]{
+    color: white;
+    font-size: 20px;
+}
+
+img[id="post_list-person"]{
+    width: 60px;
+    height: 40px;
+}
+
+img[id="post_detail-person"]{
+    width: 500px;
+    height: 300px;
+    border-radius: 10px;
 }
