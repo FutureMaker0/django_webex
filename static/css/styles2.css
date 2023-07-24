@@ -124,3 +124,92 @@ p[id="no-list"]{
 th[id="table-content"]{
     max-width: 200px;
 }
+
+label[for="id_title"] {
+    font-weight: bold;
+    font-size: 25px;
+    color: white;
+}
+
+input#id_title {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* "내용" 필드 스타일링 */
+label[for="id_content"] {
+    font-weight: bold;
+    font-size: 25px;
+    color: white;
+}
+
+textarea#id_content {
+    width: 100%;
+    height: 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical; /* 텍스트 영역의 크기를 수직 방향으로 조절 가능하도록 합니다. */
+    margin-bottom: 10px;
+}
+
+input[type="submit"]{
+    border-radius: 4px;
+    background-color: white;
+    color: darkblue;
+}
+
+form input[type="email"],
+form input[type="text"],
+form input[type="password"] {
+    width: 300px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    color: darkblue;
+}
+
+h1[id="userindex_h1"]{
+    color: white;
+    font-size: 50px;
+}
+
+h2[id="register-h2"]{
+    color: white;
+    font-size: 40px;
+}
+
+h3[id="register-h3"]{
+    color: white;
+    font-size: 30px;
+}
+
+.register-align{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;  /*화면 전체 높이를 차지합니다. */
+}
+
+h2[id="login-h2"]{
+    color: white;
+    font-size: 40px;
+}
+
+h3[id="login-h3"]{
+    color: white;
+    font-size: 30px;
+}
+
+.login-align{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;  /*화면 전체 높이를 차지합니다. */
+}
