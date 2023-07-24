@@ -13,7 +13,12 @@
 
             <!-- post_list에서 post에 대한 검증을 if 문으로 하고 오기 떄문에 추가 검증은 불필요 -->
             <p class="mt-4"><label for="post-content">내용 </label></p>
-            <p><img id="post_detail-person" class="card-img-top" src="{{ post.head_image.url }}" alt="card image cap"></p>
+            {% if post.head_image %}
+                <p><img id="post_detail-person" class="card-img-top" src="{{ post.head_image.url }}" alt="{{ post.title }} head image"></p>
+            {% else %}
+                <p><img id="post_detail-person" class="card-img-top" src="https://picsum.photos/seed/{{ post.id }}/10/7" alt="random_image"></p>
+            {% endif %}
+            
             <p>{{ post.content }}</p>
             <hr>
             <br>
@@ -73,6 +78,7 @@
                     </li>
                 {% endfor %}
             </ul>
+            <hr>
 
             {% else %}
                 <p> 해시태그가 없습니다. </p><hr>

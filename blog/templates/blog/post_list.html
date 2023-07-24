@@ -29,7 +29,15 @@
                 {% comment %} 일반 view 상속 시, {% for post in posts %} {% endcomment %}
                 {% for post in post_list %}
                     <tr class="centered2">
-                        <td><img id="post_list-person" class="card-img-top" src="{{ post.head_image.url }}" alt="card image cap"></td>
+                        
+                        <td>
+                        {% if post.head_image %}
+                            <img id="post_list-person" class="card-img-top" src="{{ post.head_image.url }}" alt="{{ post }} head image">
+                        {% else %}
+                            <img class="card-img-top" src="https://picsum.photos/seed/{{ post.id }}/10/7" alt="random_image">
+                        {% endif %}
+                        </td>
+
                         <!-- 'blog:detail blog: app_name, detail: urls.py에서의 name --> 
                         <td>
                             <a href="{% url 'blog:detail' pk=post.pk %}" class="btn">
