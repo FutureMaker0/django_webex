@@ -1,13 +1,16 @@
 {% extends 'user/base.html' %}
 
 {% block content %}
+<div class="container login-align">
 
-<h2>로그인 페이지</h2>
+    <h2 id="login-h2">로그인 페이지</h2>
+    <h3 id="login-h3">아래 정보를 기입한 후 로그인을 완료해주시기 바랍니다.</h3>
 
-<form action="{% url 'user:login' %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="로그인">
-</form>
+    <form action="{% url 'user:login' %}" method="post" class="mt-5">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="로그인">
+    </form>
 
+</div>
 {% endblock %}

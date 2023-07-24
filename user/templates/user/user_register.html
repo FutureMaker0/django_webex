@@ -1,13 +1,18 @@
 {% extends 'user/base.html' %}
 
 {% block content %}
-<h2>회원가입 페이지</h2>
+<div class="container register-align">
 
-<form action="{% url 'user:register' %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="회원가입">
+    <h2 id="register-h2">회원가입 페이지</h2>
+    <h3 id="register-h3">아래 정보를 기입한 후 회원가입을 완료해주시기 바랍니다.</h3>
 
-</form>
+    <form action="{% url 'user:register' %}" method="post" class="mt-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="회원가입">
+
+    </form>
+
+</div>
 
 {% endblock %}
