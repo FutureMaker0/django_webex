@@ -14,7 +14,7 @@
                 <a href="{% url 'blog:edit' pk=post.pk %}" class="btn">게시글 수정</a>
                 <form action="{% url 'blog:delete' pk=post.pk %}" method="post" class="btn"> <!-- 메소드는 거의 http에서 get아니면 post다. -->
                     {% csrf_token %}
-                    <input type="submit" value="게시글 삭제" class="btn"> <!-- 해놓고 urls.py 수정 필요-->
+                    <input type="submit" value="게시글 삭제"> <!-- 해놓고 urls.py 수정 필요-->
                 </form>
                 <hr>
             {% else %}
