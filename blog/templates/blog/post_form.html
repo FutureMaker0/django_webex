@@ -3,12 +3,12 @@
 {% block content %}
     <h1 id="post_form-write">블로그 글 작성 화면</h1>
 
-    <form action="{% url 'blog:write' %}" method="post" class="mt-5"> <!-- action에 주소 -->
+    <form action="{% url 'blog:write' %}" method="post" class="mt-4"> <!-- action에 주소 -->
         {% csrf_token %}  <!-- form 요청을 허락하겠다는 명시 -->
 
         {% comment %} {{ form.as_p }} {% endcomment %}
-        <p><label for="id_title">제목:</label><input type="text" name="title" id="id_title"></p>
-        <p><label for="id_content">내용:</label><textarea name="content" id="id_content"></textarea></p>
+        <p><label for="id_title">제목: </label><input type="text" name="title" id="id_title"></p>
+        <p><label for="id_content">내용: </label><textarea name="content" id="id_content"></textarea></p>
 
         <!-- 서버에 값을 넘겨주기 위해 인풋을 사용 -->
         <input type="submit" value="등록" class="btn btn-outline-success">

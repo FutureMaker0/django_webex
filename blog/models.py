@@ -26,6 +26,8 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     # 새로 세이브 될 때마다 그 시간을 저장을 해준다.
     updated_at = models.DateTimeField(auto_now=True)
+
+    head_image = models.ImageField(upload_to='blog/images/%Y/%m/%d/', blank=True)
     
 
 class Comment(models.Model):
