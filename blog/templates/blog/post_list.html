@@ -34,7 +34,8 @@
                         {% if post.head_image %}
                             <img id="post_list-person" class="card-img-top" src="{{ post.head_image.url }}" alt="{{ post }} head image">
                         {% else %}
-                            <img class="card-img-top" src="https://picsum.photos/seed/{{ post.id }}/10/7" alt="random_image">
+                            {% comment %} <img class="card-img-top" src="https://picsum.photos/seed/{{ post.id }}/10/7" alt="random_image"> {% endcomment %}
+                            사진없음
                         {% endif %}
                         </td>
 
@@ -50,7 +51,7 @@
                                 {% endif %}
                             </a>
                         </td>
-                        <td>{{ post.content }}</td>
+                        <td>{{ post.content | truncatewords:5 }}</td>
 
                         {% if user.nickname and post.writer|lower == request.user|lower %}
                             <td>{{ user.nickname }}</td>

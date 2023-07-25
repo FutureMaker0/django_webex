@@ -13,13 +13,32 @@
 
             <!-- post_list에서 post에 대한 검증을 if 문으로 하고 오기 떄문에 추가 검증은 불필요 -->
             <p class="mt-4"><label for="post-content">내용 </label></p>
+
+            {% if post.file_upload %}
+                <label id="uploaded_file">첨부파일: </label>
+                <a class="btn btn-primary" href="{{ post.file_upload.url }}" role="button" download>
+                    {% if post.get_file_ext == 'csv' %}
+                        <i class="fas fa-file-csv"></i>
+                    {% elif post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}
+                        <i class="fas fa-file-excel"></i>
+                    {% elif post.get_file_ext == 'docx' or post.get_file_ext == 'doc' %}
+                        <i class="fas fa-file-word"></i>
+                    {% else %}
+                        <i class="far fa-file"></i>
+                    {% endif %}
+
+                    {{ post.get_file_name }}
+                </a>
+            {% endif %}
+
             {% if post.head_image %}
-                <p><img id="post_detail-person" class="card-img-top" src="{{ post.head_image.url }}" alt="{{ post.title }} head image"></p>
+                <p><img id="post_detail-person" class="card-img-top mt-3" src="{{ post.head_image.url }}" alt="{{ post.title }} head image"></p>
             {% else %}
-                <p><img id="post_detail-person" class="card-img-top" src="https://picsum.photos/seed/{{ post.id }}/10/7" alt="random_image"></p>
+                {% comment %} <p><img id="post_detail-person" class="card-img-top" src="https://picsum.photos/seed/{{ post.id }}/10/7" alt="random_image"></p> {% endcomment %}
+                <p>사진없음</p>
             {% endif %}
             
-            <p>{{ post.content }}</p>
+            <p id="post_detail-content">{{ post.content }}</p>
             <hr>
             <br>
 
@@ -47,6 +66,7 @@
                         </li>
                     {% endfor %}
                 </ul>
+                <br>
 
             {% else %}
                 <p>댓글이 없습니다.</p>
@@ -78,6 +98,7 @@
                     </li>
                 {% endfor %}
             </ul>
+            <br>
             <hr>
 
             {% else %}

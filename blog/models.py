@@ -1,5 +1,6 @@
 # Create your models here.
 from django.db import models
+import os
 
 # Create your models here.
 # 데이터베이스가 테이블처럼 형태를 가지고 있다.
@@ -28,7 +29,16 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     head_image = models.ImageField(upload_to='blog/images/%Y/%m/%d/', blank=True)
+    file_upload = models.FileField(upload_to='blog/images/%Y/%m/%d/', blank=True)
+
+    category = models.ForeignKey('Category', blank=True, null=True, on_delete=models.SET_NULL)
     
+    def get_file_name(self):
+        return os.path.basename(self.file_upload.name)
+    
+    def get_file_ext(self):
+        return self.get_file_name().split('.')[-1]
+
 
 class Comment(models.Model):
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
@@ -56,3 +66,13 @@ class HashTag(models.Model):
     def __str__(self):
         return self.name
 
+
+class Category(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(max_length=200, unique=True, allow_unicode=True)
+
+    def __self__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name_plural = 'Categories'
