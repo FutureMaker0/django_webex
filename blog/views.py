@@ -3,9 +3,9 @@ from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 # from django.http import HttpResponse
 from django.views import View 
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Post, Comment, HashTag # 같은 경로의 models에서 Post 가져옴.
+from .models import Post, Comment, HashTag, Category # 같은 경로의 models에서 Post 가져옴.
 from .forms import PostForm, CommentForm, HashTagForm
 from django.urls import reverse_lazy, reverse
 from django.core.paginator import Paginator
@@ -51,6 +51,29 @@ class Index(ListView):
     ordering = '-pk'
     # ordering = ['created_at']
     paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super(Index, self).get_context_data()
+        context['categories'] = Category.objects.all()
+        context['no_category_post_count'] = Post.objects.filter(category=None).count()
+        return context
+    
+def CategorySearch(request, slug):
+    if slug == 'no_category':
+        category = '미분류'
+        post_list = Post.objects.filter(category=None)
+    else:
+        category = Category.objects.get(slug=slug)
+        post_list = Post.objects.filter(category=category)
+
+    return render(request, 'blog/post_list.html',
+        {
+            'post_list': post_list,
+            'categories': Category.objects.all(),
+            'no_category_post_count': Post.objects.filter(category=None).count(),
+            'category': category,
+        }
+    )
 
 
 # django 자체에 클래스 뷰 기능이 강력하고 편리하다.
@@ -125,42 +148,61 @@ class Delete(View):
     # 클래스 자체에 아예 접근하지 못하게 mixin 필요
     # 로그인이 되었을 때만 삭제 버튼이 보이게.
 
+class DetailView(DetailView):
+    model = Post
 
-class DetailView(View):
-    def get(self, request, pk): # pk: 디비 post_id, 포스트의 아이디값
+    def get_context_data(self, **kwargs):
+            context = super(DetailView, self).get_context_data()
+            context['categories'] = Category.objects.all()
+            context['no_category_post_count'] = Post.objects.filter(category=None).count()
 
-        # list -> object 상세 페이지 -> 상세  페이지 하나의 내용
-        # pk 값을 왔다갔다, 하나의 인자
+            # Post와 연결된 Comment와 HashTag 가져오기
+            post = context['post']
+            context['comments'] = Comment.objects.filter(post=post)
+            context['hashtags'] = HashTag.objects.filter(post=post)
 
-        # 데이터베이스 방문
-        # 해당 글 
-        post = Post.objects.get(pk=pk)
+            # 댓글 폼과 해시태그 폼 추가
+            context['comment_form'] = CommentForm()
+            context['hashtag_form'] = HashTagForm()
+            
+            return context
 
-        # 댓글
-        # all - 테이블 전체
-        # get - 값 하나
-        # filter - 조건에 맞는 값
-        comments = Comment.objects.filter(post=post)
 
-        # HashTag
-        hashtags = HashTag.objects.filter(post=post)
+# class DetailView(View):
+#     def get(self, request, pk): # pk: 디비 post_id, 포스트의 아이디값
 
-        # 댓글 폼
-        comment_form = CommentForm()
+#         # list -> object 상세 페이지 -> 상세  페이지 하나의 내용
+#         # pk 값을 왔다갔다, 하나의 인자
 
-        # 해시태그 폼 
-        hashtag_form = HashTagForm()
+#         # 데이터베이스 방문
+#         # 해당 글 
+#         post = Post.objects.get(pk=pk)
 
-        context = {
-            'title': 'Blog',
-            'post': post,
-            'comments': comments,
-            'hashtags': hashtags,
-            'comment_form': comment_form,
-            'hashtag_form': hashtag_form,
-        }
-    
-        return render(request, 'blog/post_detail.html', context)
+#         # 댓글
+#         # all - 테이블 전체
+#         # get - 값 하나
+#         # filter - 조건에 맞는 값
+#         comments = Comment.objects.filter(post=post)
+
+#         # HashTag
+#         hashtags = HashTag.objects.filter(post=post)
+
+#         # 댓글 폼
+#         comment_form = CommentForm()
+
+#         # 해시태그 폼 
+#         hashtag_form = HashTagForm()
+
+#         context = {
+#             'title': 'Blog',
+#             'post': post,
+#             'comments': comments,
+#             'hashtags': hashtags,
+#             'comment_form': comment_form,
+#             'hashtag_form': hashtag_form,
+#         }
+
+#         return render(request, 'blog/post_detail.html', context)
 
 
 class commentWrite(LoginRequiredMixin, View): # 일반 뷰를 상속
@@ -258,3 +300,4 @@ class PostSearch(Index):
         q = self.kwargs['q']
         context['search_info'] = f'검색결과: {q} ({self.get_queryset().count()})'
         return context
+    

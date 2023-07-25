@@ -7,6 +7,6 @@ admin.site.register(Comment)
 admin.site.register(HashTag)
 
 class CategoryAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('name',)}
+    prepopulated_fields = {'slug': ('name', )}
 
 admin.site.register(Category, CategoryAdmin)

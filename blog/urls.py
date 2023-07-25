@@ -34,6 +34,9 @@ urlpatterns = [
     # 글 검색
     path("search/<str:q>/", views.PostSearch.as_view(), name='search'),
 
+    # 카테고리 검색
+    path("category/<str:slug>/", views.CategorySearch, name='category'),
+
 ]
 
 # 여기에 정의하는 애들은 서버주소/blog에 정의가 되는 애들이다.

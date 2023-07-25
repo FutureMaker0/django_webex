@@ -28,6 +28,8 @@
             <tbody>
                 {% comment %} 일반 view 상속 시, {% for post in posts %} {% endcomment %}
                 {% for post in post_list %}
+                <div>
+
                     <tr class="centered2">
                         
                         <td>
@@ -42,7 +44,7 @@
                         <!-- 'blog:detail blog: app_name, detail: urls.py에서의 name --> 
                         <td>
                             <a href="{% url 'blog:detail' pk=post.pk %}" class="btn">
-                                {{ post.title }}
+                                {{ post.title | truncatewords:3 }}
                                 <!-- comment 갯수 타이틀 옆에 표기 -->
                                 {% if post.comment_set.count > 0 %}
                                 <span class="text-danger small ml-2">
@@ -54,13 +56,15 @@
                         <td>{{ post.content | truncatewords:5 }}</td>
 
                         {% if user.nickname and post.writer|lower == request.user|lower %}
-                            <td>{{ user.nickname }}</td>
+                            <td>{{ user.nickname | truncatewords:1 }}</td>
                         {% else %}
-                            <td>{{ post.writer }}</td>
+                            <td>{{ post.writer | truncatewords:1 }}</td>
                         {% endif %}
 
-                        <td>{{ post.created_at }}</td>
+                        <td>{{ post.created_at | truncatewords:1 }}</td>
                     </tr>
+
+                </div>
                 {% endfor %}
             </tbody>
         </table>
