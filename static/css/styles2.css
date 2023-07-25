@@ -242,3 +242,11 @@ img[id="post_detail-person"]{
     height: 300px;
     border-radius: 10px;
 }
+
+p[id="post_detail-content"]{
+    font-size: 20px;
+}
+
+label[id="uploaded_file"]{
+    font-size: 17px;
+}
