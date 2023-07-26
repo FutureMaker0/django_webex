@@ -51,8 +51,10 @@
 |2|회원가입 기능 구현||
 ||회원가입을 할 수 있는 페이지가 있어야합니다.|O|
 ||입력받는 값은 id, password입니다.|O|
+||<img width="1440" alt="user_register" src="https://github.com/FutureMaker0/django_webex/assets/120623320/dac32cc9-b2b7-46a7-8ce4-4c8beecc89f7">||
 |3|로그인 기능 구현||
 ||로그인을 할 수 있는 페이지가 있어야합니다.|O|
+||<img width="1440" alt="user_login" src="https://github.com/FutureMaker0/django_webex/assets/120623320/b6bb4484-2a6b-43d5-9204-9487c05671e8">||
 ||입력받는 값은 id, password입니다.|O|
 ||<img width="1440" alt="스크린샷 2023-07-20 오후 7 05 16" src="https://github.com/FutureMaker0/django_webex/assets/120623320/9c57745d-c859-4c5c-a116-3f989b5abaf0">||
 |4|**게시글 작성 기능 구현**||
@@ -62,14 +64,20 @@
 ||**사진 업로드가 가능하도록 합니다.**|X -> O|
 ||**첨부파일 다운로드가 가능하도록 합니다.**|X -> O|
 ||**게시글 조회수가 올라갈 수 있도록 합니다.**|X|
+||<img width="1440" alt="post_form" src="https://github.com/FutureMaker0/django_webex/assets/120623320/0470a002-8127-4057-b754-5bde5a155e68">||
 |5|게시글 목록 기능 구현||
 ||모든 사용자들이 게시한 블로그 게시글들의 제목을 확인 할 수 있습니다.|O|
 ||**게시글 내용 ... 축약을 통한 가독성 확보**|X -> O|
 |6|게시글 상세보기 기능 구현||
 ||게시글의 제목/내용을 보는 기능입니다.|O|
+||<img width="1440" alt="post_detail_image" src="https://github.com/FutureMaker0/django_webex/assets/120623320/78addb93-ac58-47c0-b635-c925e9535050">|첨부된 사진이 있는 경우의 상세보기 페이지|
+||<img width="1440" alt="post_detail_noimage" src="https://github.com/FutureMaker0/django_webex/assets/120623320/7111df68-b29e-403b-9d2e-fc909f7cd64a">|첨부된 사진이 없는 경우의 상세보기 페이지|
 |7|게시글 검색 기능 구현||
 ||주제와 태그에 따라 검색이 가능하게 합니다.|▲|
 ||검색한 게시물은 시간순에 따라 정렬이 가능해야 합니다.|▲|
+||카테고리 선택에 따른 검색목록 리스트업.|O|
+||<img width="1440" alt="selected_by_category1" src="https://github.com/FutureMaker0/django_webex/assets/120623320/c204fa86-4d10-463d-89db-37a6c41fa608">|카테고리1 검색|
+||<img width="1440" alt="selected_by_category2" src="https://github.com/FutureMaker0/django_webex/assets/120623320/75fff418-7441-43d0-9460-dcb8ef21c0db">|카테고리2 검색|
 |8|게시글 수정 기능 구현||
 ||로그인을 한 유저만 해당 기능을 사용 할 수 있습니다.|O|
 ||본인의 게시글이 아니라면 수정이 불가능합니다.|O|
