@@ -71,6 +71,7 @@
 ||<img width="1440" alt="post_list" src="https://github.com/FutureMaker0/django_webex/assets/120623320/6201fd49-f490-45b9-a630-d8026e680fa4">||
 |6|게시글 상세보기 기능 구현||
 ||게시글의 제목/내용을 보는 기능입니다.|O|
+||게시글 작성 시 첨부된 파일 다운로드 기능. 파일 확장자에 따라 이미지 표기 (xlsx/word/csv/else)|O|
 ||<img width="1440" alt="post_detail_image" src="https://github.com/FutureMaker0/django_webex/assets/120623320/78addb93-ac58-47c0-b635-c925e9535050">|첨부된 사진이 있는 경우의 상세보기 페이지|
 ||<img width="1440" alt="post_detail_noimage" src="https://github.com/FutureMaker0/django_webex/assets/120623320/7111df68-b29e-403b-9d2e-fc909f7cd64a">|첨부된 사진이 없는 경우의 상세보기 페이지|
 |7|게시글 검색 기능 구현||
