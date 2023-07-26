@@ -37,7 +37,7 @@
   
 
 #
-<img width="945" alt="기술블로그 모델링" src="https://github.com/FutureMaker0/django_webex/assets/120623320/4930696a-62bb-4fc2-8d8c-ac453735144a">
+<img width="947" alt="기술블로그 ER Diagram" src="https://github.com/FutureMaker0/django_webex/assets/120623320/6cf11cb6-b76f-406a-8f8f-3cee291e2804">
 
 
 # 개발 요구사항 (3단계 기준, 2단계 달성)
